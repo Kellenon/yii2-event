@@ -1,0 +1,46 @@
+{
+  "name": "kellenon/yii2-event",
+  "description": "Package",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii",
+    "yii2",
+    "extension",
+    "event",
+    "handler",
+    "behavior",
+    "bootstrap",
+    "listener"
+  ],
+  "homepage": "https://github.com/kellenon/yii2-event",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Cal Kestis",
+      "email": "kellenon@yandex.ru"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "yiisoft/yii2": "^2.0"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kellenon\\Yii2Event\\": "src/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true
+    }
+  }
+}
