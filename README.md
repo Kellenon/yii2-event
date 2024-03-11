@@ -100,7 +100,7 @@ class Order extends ActiveRecord
     {
         return [
             [
-                'class' => EventBootstrap::class,
+                'class' => EventBehavior::class,
                 'events' => [
                     static::EVENT_AFTER_COMPLETE => [
                         Listener1::class,
