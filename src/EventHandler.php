@@ -23,11 +23,12 @@ final class EventHandler
     private array $listeners;
 
     /**
+     * @param EventHandlerConfig $config
      * @param string[] $listeners
      */
-    public function __construct(array $listeners = [])
+    public function __construct(EventHandlerConfig $config, array $listeners = [])
     {
-        $this->config = new EventHandlerConfig();
+        $this->config = $config;
         $this->listeners = $listeners;
     }
 
@@ -70,13 +71,5 @@ final class EventHandler
                 }
             }
         }
-    }
-
-    /**
-     * @return EventHandlerConfig
-     */
-    public function getConfig(): EventHandlerConfig
-    {
-        return $this->config;
     }
 }

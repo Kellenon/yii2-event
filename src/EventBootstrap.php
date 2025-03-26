@@ -36,10 +36,10 @@ final class EventBootstrap implements BootstrapInterface
     public function bootstrap($app): void
     {
         foreach ($this->events as $eventName => $listeners) {
-            $eventHandler = new EventHandler(is_array($listeners) ? $listeners : [$listeners]);
-            $eventHandler->getConfig()->setContinueProcessingOnError($this->continueProcessingOnError);
-
-            $app->on($eventName, $eventHandler);
+            $app->on(
+                $eventName,
+                new EventHandler((new EventHandlerConfig())->setContinueProcessingOnError($this->continueProcessingOnError), is_array($listeners) ? $listeners : [$listeners]),
+            );
         }
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Kellenon\Yii2Event\Behavior;
 
 use Kellenon\Yii2Event\EventHandler;
+use Kellenon\Yii2Event\EventHandlerConfig;
 use yii\base\Behavior;
 use yii\base\Component;
 
@@ -34,18 +35,19 @@ final class EventBehavior extends Behavior
     public bool $continueProcessingOnError = false;
 
     /**
-     * @param $owner
-     * @return void
+     * @return array
      */
-    public function attach($owner): void
+    public function events()
     {
-        parent::attach($owner);
+        $events = [];
 
         foreach ($this->events as $eventName => $listeners) {
-            $eventHandler = new EventHandler(is_array($listeners) ? $listeners : [$listeners]);
-            $eventHandler->getConfig()->setContinueProcessingOnError($this->continueProcessingOnError);
-
-            $owner->on($eventName, $eventHandler);
+            $events[$eventName] = new EventHandler(
+                (new EventHandlerConfig())->setContinueProcessingOnError($this->continueProcessingOnError),
+                is_array($listeners) ? $listeners : [$listeners],
+            );
         }
+
+        return $events;
     }
 }
